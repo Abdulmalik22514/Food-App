@@ -1,0 +1,12 @@
+{
+  "name": "ShipHub",
+  "displayName": "ShipHub",
+  "expo": {
+    "name": "ShipHub",
+    "slug": "ShipHub",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
