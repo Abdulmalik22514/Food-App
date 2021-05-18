@@ -8,6 +8,7 @@ export const Buttons = ({
   icon,
   onPress,
   style,
+  isBold,
 }) => {
   return (
     <TouchableOpacity
@@ -20,7 +21,9 @@ export const Buttons = ({
         style,
       ]}
     >
-      <Text style={styles.text}>{title ? title : icon}</Text>
+      <Text style={[styles.text, isBold && styles.bold]}>
+        {title ? title : icon}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -36,12 +39,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 20,
   },
+  bold: {
+    fontWeight: "bold",
+    fontSize: 17,
+  },
   skyBlue: {
     backgroundColor: "#00ACEE",
   },
   blueColor: {
     backgroundColor: "#3B5998",
-    // marginRight: 20,
   },
   text: {
     color: "white",
