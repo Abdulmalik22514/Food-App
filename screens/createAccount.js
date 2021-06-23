@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Facebook, Google, LogoType } from "../assets/svg";
 import { Buttons } from "../components/customButton";
 import { Input } from "../components/customInput";
@@ -9,11 +16,13 @@ export default function CreateAccount({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style={"dark"} />
-      <Image
+      <ImageBackground
         source={require("../assets/images/registerImage.png")}
         style={styles.image}
-      />
-      <LogoType style={styles.logoType} />
+      >
+        <LogoType style={styles.logoType} />
+      </ImageBackground>
+
       <Input placeholder="First Name" />
       <Input placeholder="Last Name" />
       <Input placeholder="Your email" />
@@ -48,21 +57,21 @@ export default function CreateAccount({ navigation }) {
 const styles = StyleSheet.create({
   createAccount: {
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 18,
     textAlign: "center",
+    color: "#313131",
   },
   login: {
     color: "#BB0C24",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 18,
     textAlign: "center",
   },
   option: {
     flexDirection: "row",
-    // alignItems: "center",
     justifyContent: "space-between",
-    marginHorizontal: 40,
-    marginTop: 20,
+    marginTop: 40,
+    marginBottom: 15,
   },
   already: {
     flexDirection: "row",
@@ -72,11 +81,11 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 150,
+    height: 430,
   },
   logoType: {
     alignSelf: "center",
-    marginBottom: 10,
+    marginTop: 250,
   },
   container: {
     flex: 1,
