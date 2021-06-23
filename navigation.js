@@ -8,6 +8,7 @@ import Login from "./screens/login";
 import CreateAccount from "./screens/createAccount";
 import Home from "./screens/home";
 import Details from "./screens/details";
+import CartScreen from "./screens/cart";
 
 const Stack = createStackNavigator();
 
@@ -15,8 +16,10 @@ export default function Navigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode={"none"}>
-        <Stack.Screen name="details" component={Details} />
+        <Stack.Screen name="cart" component={CartScreen} />
         <Stack.Screen name="launch" component={LaunchScreen} />
+        <Stack.Screen name="details" component={Details} />
+
         <Stack.Screen name="home" component={Home} />
         <Stack.Screen name="createAccount" component={CreateAccount} />
         <Stack.Screen name="login" component={Login} />
