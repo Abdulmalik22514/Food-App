@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 12,
+    fontSize: 15,
   },
 });
