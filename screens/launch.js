@@ -41,7 +41,7 @@ export default function LaunchScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar style={"dark"} />
+      <StatusBar style={"auto"} />
       <AppIntroSlider
         renderItem={_renderItem}
         data={slides}
