@@ -15,3 +15,6 @@ export const Waffles = require("./waffles.png");
 export const HotDog = require("./hotDog.png");
 export const Soup = require("./soup.png");
 export const Cake = require("./cranberryCake.png");
+export const Pepperoni = require("./pepperoni.png");
+export const Crepe = require("./crepe.png");
+// export const Pepperoni = require("./pepperoni.png");
