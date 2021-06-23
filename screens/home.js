@@ -21,7 +21,7 @@ export default function Home({ navigation }) {
   const [Active, SetActive] = useState("Burger");
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar style={"dark"} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.topBar}>
@@ -35,9 +35,7 @@ export default function Home({ navigation }) {
               </Text>
               <DropDown />
             </View>
-            <Text style={{ color: "#BB0C24", fontWeight: "bold" }}>
-              3245 Palm Street Lane
-            </Text>
+            <Text style={styles.palmStreet}>3245 Palm Street Lane</Text>
           </View>
           <TouchableOpacity>
             <Image
@@ -51,7 +49,7 @@ export default function Home({ navigation }) {
           <View style={styles.searchInput}>
             <SearchIcon />
             <TextInput
-              style={{ marginLeft: 10, width: "90%" }}
+              style={{ marginLeft: 13, width: "90%", fontSize: 17 }}
               placeholder="Search"
             />
           </View>
@@ -95,7 +93,7 @@ export default function Home({ navigation }) {
           ))}
         </ScrollView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -103,20 +101,24 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: "row",
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 25,
   },
-
+  palmStreet: {
+    color: "#BB0C24",
+    fontWeight: "bold",
+    fontSize: 14,
+  },
   container: {
     flex: 1,
     backgroundColor: "#F8F8F8",
-    paddingTop: 25,
+    paddingTop: 40,
     paddingLeft: 20,
     paddingBottom: 20,
   },
   filter: {
     backgroundColor: "#BB0C24",
-    width: "18%",
-    height: 52,
+    width: "17%",
+    height: 59,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -127,13 +129,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginRight: 20,
     marginTop: 15,
-    marginBottom: 15,
+    marginBottom: 20,
   },
   searchInput: {
     flexDirection: "row",
     backgroundColor: "#F3F3F3",
-    width: "70%",
-    height: 52,
+    width: "72%",
+    height: 59,
     borderRadius: 10,
     alignItems: "center",
     padding: 10,
@@ -151,9 +153,10 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   what: {
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#313131",
-    marginTop: 10,
+    marginTop: 15,
+    marginBottom: 10,
   },
 });
