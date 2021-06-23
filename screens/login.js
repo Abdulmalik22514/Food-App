@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ImageBackground,
+} from "react-native";
 import { Facebook, Google, LogoType } from "../assets/svg";
 import { Buttons } from "../components/customButton";
 import { Input } from "../components/customInput";
@@ -9,11 +16,13 @@ export default function Login({ navigation }) {
   return (
     <View stytle={styles.container}>
       <StatusBar style={"dark"} />
-      <Image
+      <ImageBackground
         source={require("../assets/images/registerImage.png")}
         style={styles.image}
-      />
-      <LogoType style={styles.logoType} />
+      >
+        <LogoType style={styles.logoType} />
+      </ImageBackground>
+
       <Input placeholder="Username or email" />
       <Input placeholder="Password" />
       <Buttons title="Log In" onPress={() => navigation.navigate("home")} />
@@ -55,21 +64,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginHorizontal: 40,
-    marginTop: 25,
+    marginHorizontal: 60,
+    marginTop: 20,
+    marginBottom: 15,
   },
   image: {
     width: "100%",
-    height: 200,
+    height: 430,
   },
   forgot: {
     color: "#787878",
     textAlign: "center",
-    marginTop: 10,
+    marginTop: 25,
+    marginBottom: 50,
   },
   logoType: {
     alignSelf: "center",
-    marginBottom: 10,
+    marginTop: 250,
     // width: 300,
   },
 });
