@@ -12,44 +12,11 @@ import { Add, Back, Heart, Less, Star } from "../assets/svg";
 import * as Images from "../assets/images";
 import * as Colors from "../common/colors";
 import { Buttons } from "../components/customButton";
+import { ChoiceOfAdd, Choices } from "../components/detailscard";
 
-const ChoiceOfAdd = [
-  {
-    title: "Cream",
-    money: "+$2.30",
-  },
-  {
-    title: "Chocolate sauce",
-    money: "+$2.30",
-  },
-  {
-    title: "Vanilla ice cream",
-    money: "+$2.30",
-  },
-];
-
-const Choices = ({ item, isSelected, onPress }) => {
-  return (
-    <View style={styles.choiceCont}>
-      <View>
-        <Text style={{ color: Colors.Ash, fontSize: 15 }}>{item.title}</Text>
-      </View>
-      <View style={styles.selector}>
-        <Text style={{ fontSize: 14, fontWeight: "bold" }}>{item.money}</Text>
-        <TouchableOpacity style={styles.outerCircle} onPress={onPress}>
-          {isSelected ? (
-            <View style={[styles.innerCircle, isSelected && styles.red]} />
-          ) : (
-            <View style={styles.innerCircle} />
-          )}
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
-
-export default function Details() {
+export default function Details({ navigation }) {
   const [selected, setSelected] = useState("Cream");
+  const [value, setValue] = useState();
   return (
     <View style={styles.container}>
       <StatusBar style={"light"} />
@@ -76,20 +43,29 @@ export default function Details() {
             <Text style={{ fontWeight: "bold", fontSize: 14 }}>4.5</Text>
             <Text style={styles.number}>(25+)</Text>
             <TouchableOpacity>
-              <Text style={{ color: Colors.Red, fontWeight: "bold" }}>
-                See Review
-              </Text>
-              <View style={styles.underline} />
+              <Text style={styles.review}>See Review</Text>
+              {/* <View style={styles.underline} /> */}
             </TouchableOpacity>
           </View>
           <View style={styles.moneyAddition}>
-            <Text style={styles.amount}>{`$${3.5}`}</Text>
+            <Text style={styles.amount}>
+              <Text style={styles.dolz}>$</Text>
+              3.50
+            </Text>
             <View style={styles.addSub}>
-              <TouchableOpacity style={styles.substraction}>
+              <TouchableOpacity
+                style={styles.substraction}
+                onPress={() => (value > 0 ? setValue(value - 1) : null)}
+              >
                 <Less />
               </TouchableOpacity>
-              <Text style={{ fontWeight: "bold" }}>03</Text>
-              <TouchableOpacity style={styles.addition}>
+              <Text style={{ fontWeight: "bold" }}>{value}</Text>
+              <TouchableOpacity
+                style={styles.addition}
+                onPress={() =>
+                  value >= 0 && value < 10 ? setValue(value + 1) : null
+                }
+              >
                 <Add />
               </TouchableOpacity>
             </View>
@@ -100,16 +76,22 @@ export default function Details() {
             favorite!
           </Text>
           <Text style={styles.choice}>Choice of Add On</Text>
-          {ChoiceOfAdd.map((item) => {
+          {ChoiceOfAdd.map((item, index) => {
             return (
               <Choices
+                key={index}
                 item={item}
                 onPress={() => setSelected(item.title)}
                 isSelected={item.title === selected}
               />
             );
           })}
-          <Buttons style={styles.cart} title="Add to cart" isBold />
+          <Buttons
+            style={styles.cart}
+            title="Add to cart"
+            isBold
+            onPress={() => navigation.navigate("cart")}
+          />
         </View>
       </ScrollView>
     </View>
@@ -121,10 +103,22 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 5,
   },
+  review: {
+    color: Colors.Red,
+    fontWeight: "bold",
+    fontSize: 13,
+    textDecorationLine: "underline",
+  },
+  dolz: {
+    color: Colors.Red,
+    fontSize: 17,
+    fontWeight: "bold",
+  },
   cart: {
-    width: "100%",
+    width: "92%",
     borderRadius: 30,
     height: 60,
+    marginTop: 40,
   },
   number: {
     color: Colors.Grey,
@@ -134,37 +128,9 @@ const styles = StyleSheet.create({
   amount: {
     color: Colors.Red,
     fontWeight: "bold",
-    fontSize: 17,
+    fontSize: 30,
   },
-  red: {
-    backgroundColor: Colors.Red,
-  },
-  selector: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "25%",
-  },
-  choiceCont: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginTop: 18,
-  },
-  innerCircle: {
-    width: 14,
-    height: 14,
-    backgroundColor: Colors.Grey,
-    borderRadius: 7,
-  },
-  outerCircle: {
-    width: 20,
-    height: 20,
-    borderColor: Colors.Grey,
-    borderRadius: 10,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+
   choice: {
     fontSize: 20,
     fontWeight: "bold",
@@ -175,9 +141,12 @@ const styles = StyleSheet.create({
   },
   lorem: {
     color: Colors.Ash,
-    fontSize: 15,
-    textAlign: "justify",
-    lineHeight: 21,
+    fontSize: 18,
+    // textAlign: "justify",
+    lineHeight: 27,
+    fontWeight: "300",
+    height: 110,
+    width: 370,
   },
   moneyAddition: {
     flexDirection: "row",
@@ -210,23 +179,23 @@ const styles = StyleSheet.create({
     borderColor: Colors.Red,
   },
   underline: {
-    width: 75,
-    height: 3,
+    width: 79,
+    height: 2,
     backgroundColor: Colors.Red,
-    marginTop: -3,
+    marginTop: -1,
   },
   fav: {
-    width: 165,
+    width: 180,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginTop: 5,
+    marginTop: 10,
   },
   cakeText: {
     color: Colors.blackText,
     fontWeight: "bold",
-    fontSize: 25,
-    marginTop: -25,
+    fontSize: 30,
+    marginTop: -35,
   },
   crepeText: {
     color: "white",
@@ -249,7 +218,7 @@ const styles = StyleSheet.create({
   },
   cake: {
     width: "100%",
-    height: 350,
+    height: 400,
     paddingTop: 40,
   },
 });
